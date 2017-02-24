@@ -998,6 +998,12 @@ class CoAuthors_Plus {
 	 */
 	public function fix_author_page() {
 
+		global $wp_query, $authordata;
+
+		if( ! $wp_query ) {
+			return;
+		}
+
 		if ( ! is_author() ) {
 			return;
 		}
@@ -1008,8 +1014,6 @@ class CoAuthors_Plus {
 		}
 
 		$author = $this->get_coauthor_by( 'user_nicename', $author_name );
-
-		global $wp_query, $authordata;
 
 		if ( is_object( $author ) ) {
 			$authordata = $author;
